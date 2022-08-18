@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Users from './Users/Users';
 
 function App() {
   return (
@@ -8,7 +7,6 @@ function App() {
       <header className="App-header">
       </header>
       <h1 className="mt-1">My React App</h1>
-			<Users></Users>
     </div>
   );
 }
