@@ -1,0 +1,35 @@
+img {
+    width: 100%;
+}
+.btn:focus {
+    box-shadow: none;
+    z-index: 1;
+}
+.modal_window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.input_container {
+    width: 30vw;
+    height: 500px;
+    position: absolute;
+    background-color: white;
+    top: calc(50% - 250px);
+    left: calc(50% - 15vw);
+    border-radius: 7px;
+    padding: 10px 20px;
+}
+.input_group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 70%;
+}
+.input_group > form {
+    height: 100%;
+}
