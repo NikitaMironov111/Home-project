@@ -1,5 +1,5 @@
 export const initialUser = {
-    "id": 8,
+    "id": 7,
     "email": "",
 	"first_name": "",
 	"last_name": "",

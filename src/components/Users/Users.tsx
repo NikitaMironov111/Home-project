@@ -1,23 +1,36 @@
 import React, { FC, useEffect, useState, useMemo } from 'react';
-import { USERS } from './usersData';
 import { IUser } from './IUser';
 import './Users.css';
 import { initialUser } from './initialUser';
 import ModalWindow from '../ModalWindow/ModalWindow';
 import Spinner from '../Spinner/Spinner';
+import http from '../http';
 
 const Users: FC = () => {
-  const [users, setUsers] = useState<IUser[]>(USERS);
+  const [users, setUsers] = useState<IUser[]>([]);
   const [search, setSearch] = useState('');
   const [openModal, setOpenModal] = useState(false);
   const [user, setUser] = useState(initialUser);
 
   const deleteUser = (id: number) => {
-    const isDelete = window.confirm('Do you want realy delete?');
+    const isDelete = window.confirm('Do you really want to delete user?');
     if (isDelete) {
       setUsers(users.filter((user) => user.id !== id));
     }
   };
+  const getUser = async () => {
+    try {
+      const users = await http.get('users');
+      setUsers(users.data);
+      console.log(users);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
+
   const searchedUsers = useMemo(() => {
     if (search) {
       return users.filter(
