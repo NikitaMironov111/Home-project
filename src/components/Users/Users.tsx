@@ -12,10 +12,13 @@ const Users: FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const [user, setUser] = useState(initialUser);
 
-  const deleteUser = (id: number) => {
+  const deleteUser = async (id: number) => {
     const isDelete = window.confirm('Do you really want to delete user?');
     if (isDelete) {
-      setUsers(users.filter((user) => user.id !== id));
+      const deletedUser = await http.delete(`users/${id}`);
+      if (deletedUser.status === 200) {
+        setUsers(users.filter((user) => user.id !== id));
+      }
     }
   };
   const getUser = async () => {
