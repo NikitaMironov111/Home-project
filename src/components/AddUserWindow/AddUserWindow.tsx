@@ -1,32 +1,38 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { IUser } from '../Users/IUser';
 import { initialUser } from '../Users/initialUser';
+import http from '../http';
 
-interface ModalWindowProps {
+interface AddUserWindowProps {
   openModal: any;
   user: object;
   setUser: any;
   users: any;
   setUsers: any;
 }
-const ModalWindow = ({
+const AddUserWindow = ({
   openModal,
   user,
   setUser,
   users,
   setUsers,
-}: ModalWindowProps) => {
-  console.log(users);
+}: AddUserWindowProps) => {
   const onChangeUserData = (event: ChangeEvent<HTMLInputElement>) => {
     const field = event.target.id;
     setUser({ ...user, [field]: event.target.value });
   };
 
-  const addUser = (event: FormEvent) => {
+  const addUser = async (event: FormEvent) => {
     event.preventDefault();
-    setUsers([...users, user]);
-    console.log(users);
-    setUser(initialUser);
+    try {
+      const addedUser = await http.post('users', user);
+      if (addedUser.data) {
+        setUsers([...users, user]);
+        setUser(initialUser);
+      }
+    } catch (e) {
+      console.log(e);
+    }
     openModal(false);
   };
   return (
@@ -84,4 +90,4 @@ const ModalWindow = ({
   );
 };
 
-export default ModalWindow;
+export default AddUserWindow;
