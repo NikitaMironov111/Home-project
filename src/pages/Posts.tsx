@@ -4,10 +4,14 @@ import { initialPost } from '../components/Posts/initialPost';
 import { IPost } from '../components/Posts/IPost';
 import PostCards from '../components/Posts/PostCards';
 import { useSearch } from '../hooks/useSearch';
+import Search from '../components/Search';
+import AddPostWindow from '../components/Posts/AddPostWindow';
 
 const Posts = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [post, setPost] = useState(initialPost);
   const [search, setSearch] = useState('');
+  const [openModal, setOpenModal] = useState(false);
 
   const deletePost = async (id: number) => {
     const isDelete = window.confirm('Do you really want to delete post?');
@@ -31,11 +35,25 @@ const Posts = () => {
   useEffect(() => {
     getPost();
   }, []);
-  // const searchedPosts = useSearch({posts, 'title', search});
+  const searchedPosts = useSearch(posts, 'title', 'body', search);
   return (
     <>
-      {/* <Search setOpenModal={setOpenModal} setSearch={setSearch}></Search> */}
-      <PostCards posts={posts} deletePost={deletePost}></PostCards>
+      {openModal && (
+        <AddPostWindow
+          openModal={setOpenModal}
+          post={post}
+          setPost={setPost}
+          posts={posts}
+          setPosts={setPosts}
+        />
+      )}
+      <Search
+        btnName={'Add new Post'}
+        field={'Enter post title or body'}
+        setOpenModal={setOpenModal}
+        setSearch={setSearch}
+      ></Search>
+      <PostCards posts={searchedPosts} deletePost={deletePost}></PostCards>
     </>
   );
 };

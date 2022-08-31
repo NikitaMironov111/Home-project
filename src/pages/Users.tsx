@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState, useContext } from 'react';
 import { IUser } from '../components/Users/IUser';
 import './Users.css';
 import { initialUser } from '../components/Users/initialUser';
-import AddUserWindow from '../components/AddUserWindow/AddUserWindow';
+import AddUserWindow from '../components/Users/AddUserWindow';
 import http from '../components/http';
 import UserCards from '../components/Users/UserCards';
 import Search from '../components/Search';
@@ -50,7 +50,12 @@ const Users: FC = () => {
           setUsers={setUsers}
         />
       )}
-      <Search setOpenModal={setOpenModal} setSearch={setSearch}></Search>
+      <Search
+        btnName={'Add new User'}
+        field={'Enter Username'}
+        setOpenModal={setOpenModal}
+        setSearch={setSearch}
+      ></Search>
       <UserCards users={searchedUsers} deleteUser={deleteUser}></UserCards>
     </>
   );
