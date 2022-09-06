@@ -2,7 +2,7 @@
   "name": "app-f2021",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/NikitaMironov111/Home-project",
+  "homepage": "https://github.com/NikitaMironov111/Home-project/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
