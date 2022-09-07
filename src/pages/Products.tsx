@@ -1,64 +1,37 @@
 import React, { FC, useEffect, useState, useContext } from 'react';
-import { IUser } from '../components/Products/IProduct';
+import { IProduct } from '../components/Products/IProduct';
 import './Products.css';
 import { initialUser } from '../components/Products/initialProduct';
-import AddUserWindow from '../components/Products/AddUserWindow';
 import http from '../components/http';
-import UserCards from '../components/Products/ProductCards';
+import ProductCards from '../components/Products/ProductCards';
 import Search from '../components/Search';
 import { useSearch } from '../hooks/useSearch';
 import Context from '../context/context';
 
-const Users: FC = () => {
-  const [users, setUsers] = useState<IUser[]>([]);
+const Products: FC = () => {
+  const [products, setProducts] = useState<IProduct[]>([]);
   const [search, setSearch] = useState('');
-  const [openModal, setOpenModal] = useState(false);
-  const [user, setUser] = useState(initialUser);
-  const { openModalLogin } = useContext(Context);
 
-  const deleteUser = async (id: number) => {
-    const isDelete = window.confirm('Do you really want to delete user?');
-    if (isDelete) {
-      const deletedUser = await http.delete(`users/${id}`);
-      if (deletedUser.status === 200) {
-        setUsers(users.filter((user) => user.id !== id));
-      }
-    }
-  };
-  const getUser = async () => {
+  const getProducts = async () => {
     try {
-      const users = await http.get('users');
-      setUsers(users.data);
+      const products = await http.get('products');
+      setProducts(products.data.products);
     } catch (e) {
       console.log(e);
     }
   };
   useEffect(() => {
-    getUser();
+    getProducts();
   }, []);
 
-  const searchedUsers = useSearch(users, 'first_name', 'last_name', search);
+  const searchedProduct = useSearch(products, 'title', search);
 
   return (
     <>
-      {openModal && (
-        <AddUserWindow
-          openModal={setOpenModal}
-          user={user}
-          setUser={setUser}
-          users={users}
-          setUsers={setUsers}
-        />
-      )}
-      <Search
-        btnName={'Add new User'}
-        field={'Enter Username'}
-        setOpenModal={setOpenModal}
-        setSearch={setSearch}
-      ></Search>
-      <UserCards users={searchedUsers} deleteUser={deleteUser}></UserCards>
+      <Search field={'Enter Product Title'} setSearch={setSearch}></Search>
+      <ProductCards products={searchedProduct}></ProductCards>
     </>
   );
 };
 
-export default Users;
+export default Products;

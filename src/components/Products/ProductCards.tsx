@@ -1,32 +1,21 @@
 import React from 'react';
 import Spinner from '../Spinner/Spinner';
-import { IUser } from './IProduct';
+import { IProduct } from './IProduct';
+import { Link } from 'react-router-dom';
 
-const UserCards = ({
-  users,
-  deleteUser,
-}: {
-  users: IUser[];
-  deleteUser: (id: number) => void;
-}) => {
+const UserCards = ({ products }: { products: IProduct[] }) => {
   return (
     <div className="row row-cols-1 row-cols-md-4 g-4">
-      {users.length ? (
-        users.map((user) => (
-          <div className="col" key={user.id}>
+      {products.length ? (
+        products.map((product) => (
+          <div className="col" key={product.id}>
             <div className="card">
-              <img src={user.avatar} className="card-img-top" alt="" />
+              <img src={product.thumbnail} className="card-img-top" alt="" />
               <div className="card-body">
-                <h5 className="card-title">{`#${user.id} - ${user.first_name} ${user.last_name}`}</h5>
-                <p className="card-text">E-mail: {user.email}</p>
-              </div>
-              <div className="card-footer">
-                <button
-                  className="btn btn-danger"
-                  onClick={() => deleteUser(user.id)}
-                >
-                  Delete User
-                </button>
+                <h5 className="card-title">
+                  <Link to={`/products/${product.id}`}>{product.title}</Link>
+                </h5>
+                <p className="card-text">Description: {product.description}</p>
               </div>
             </div>
           </div>
