@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Posts from '../pages/Posts';
-import Users from '../pages/Users';
-import Main from '../pages/Main';
+import Products from '../pages/Products';
+import LoginUser from '../pages/LoginUser'
 import Context from '../context/context';
 
 const AppRoutes = () => {
@@ -10,13 +9,12 @@ const AppRoutes = () => {
 
   return isLoginUser ? (
     <Routes>
-      <Route path="users" element={<Users></Users>}></Route>
-      <Route path="posts" element={<Posts></Posts>}></Route>
-      <Route path="main" element={<Main></Main>}></Route>
+      <Route path="products" element={<Products></Products>}></Route>
+      <Route path="personalcabinet" element={<LoginUser></LoginUser>}></Route>
     </Routes>
   ) : (
     <Routes>
-      <Route path="main" element={<Main></Main>}></Route>
+      <Route path="products" element={<Products></Products>}></Route>
     </Routes>
   );
 };

@@ -13,28 +13,23 @@ const NavBar = () => {
       <div className="container-fluid">
         <ul className="navbar-nav mr-1 mb-2 mb-lg-0">
           <li className="nav-item">
-            <Link className="nav-link" to="Main">
-              Main
+            <Link className="nav-link" to="products">
+              Products
             </Link>
           </li>
         </ul>
         {isLoginUser ? (
           <>
-            <ul className="navbar-nav mb-2 mb-lg-0">
+            <ul className="navbar-nav mb-2 mb-lg-0 mr-0">
               <li className="nav-item">
-                <Link className="nav-link" to="users">
-                  Users
+                <Link className="nav-link" to="personalcabinet">
+                  Personal Cabinet
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="posts">
-                  Posts
-                </Link>
-              </li>
+              <button className="btn btn-primary" onClick={() => logOut()}>
+                LogOut
+              </button>
             </ul>
-            <button className="btn btn-primary" onClick={() => logOut()}>
-              LogOut
-            </button>
           </>
         ) : (
           <Link

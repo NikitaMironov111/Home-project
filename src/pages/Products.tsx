@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState, useContext } from 'react';
-import { IUser } from '../components/Users/IUser';
-import './Users.css';
-import { initialUser } from '../components/Users/initialUser';
-import AddUserWindow from '../components/Users/AddUserWindow';
+import { IUser } from '../components/Products/IProduct';
+import './Products.css';
+import { initialUser } from '../components/Products/initialProduct';
+import AddUserWindow from '../components/Products/AddUserWindow';
 import http from '../components/http';
-import UserCards from '../components/Users/UserCards';
+import UserCards from '../components/Products/ProductCards';
 import Search from '../components/Search';
 import { useSearch } from '../hooks/useSearch';
 import Context from '../context/context';

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent } from 'react';
-import { IUser } from './IUser';
-import { initialUser } from './initialUser';
+import { IUser } from './IProduct';
+import { initialUser } from './initialProduct';
 import http from '../http';
 
 interface AddUserWindowProps {

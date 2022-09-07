@@ -1,6 +1,6 @@
 import React from 'react';
 import Spinner from '../Spinner/Spinner';
-import { IUser } from './IUser';
+import { IUser } from './IProduct';
 
 const UserCards = ({
   users,
