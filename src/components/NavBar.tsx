@@ -11,9 +11,16 @@ const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
+        <ul className="navbar-nav mr-1 mb-2 mb-lg-0">
+          <li className="nav-item">
+            <Link className="nav-link" to="Main">
+              Main
+            </Link>
+          </li>
+        </ul>
         {isLoginUser ? (
           <>
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link className="nav-link" to="users">
                   Users
